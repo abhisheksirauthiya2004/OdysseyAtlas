@@ -61,4 +61,6 @@ Extendable with backend or geocoding API.
 License
 MIT License
 
+This is my OdysseyAtlas project, now live!
+
 
