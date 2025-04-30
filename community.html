@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Community page for travelers to connect and share tips - Odyssey Atlas">
+    <meta name="keywords" content="travel community, forum, tips">
+    <meta name="author" content="Odyssey Atlas Team">
+    <title>Odyssey Atlas - Community</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">Odyssey Atlas</h1>
+            <button id="toggle-nav" class="nav-toggle"><i class="fas fa-bars"></i></button>
+            <ul id="nav-links" class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="map.html" class="nav-link">Map</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+                <li><a href="add-post.html" class="nav-link">Add Post</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="community.html" class="nav-link active">Community</a></li>
+                <li id="auth-section"><a href="#" id="login-btn" class="nav-link">Login</a></li>
+                <li>
+                    <select id="language-switcher" class="input">
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main class="container">
+        <header class="section text-center">
+            <h1 class="section-title"><i class="fas fa-users"></i> Community</h1>
+            <p class="section-subtitle">Connect with fellow travelers and share tips</p>
+        </header>
+        <section class="section">
+            <h2 class="section-title">Discussion Forum</h2>
+            <div class="form-group">
+                <label class="form-label">Start a New Discussion</label>
+                <input type="text" id="discussion-title" class="input" placeholder="Discussion Title">
+                <textarea id="discussion-content" class="input" placeholder="Share your thoughts..." rows="4"></textarea>
+                <button id="post-discussion" class="btn btn-primary">Post</button>
+            </div>
+            <div id="discussion-list" class="discussion-list"></div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>© 2025 Odyssey Atlas. Crafted with <i class="fas fa-heart"></i> for explorers.</p>
+    </footer>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

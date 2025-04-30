@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Add a new travel story to Odyssey Atlas">
+    <meta name="keywords" content="add post, travel story, blog">
+    <meta name="author" content="Odyssey Atlas Team">
+    <title>Odyssey Atlas - Add Post</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">Odyssey Atlas</h1>
+            <button id="toggle-nav" class="nav-toggle"><i class="fas fa-bars"></i></button>
+            <ul id="nav-links" class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="map.html" class="nav-link">Map</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+                <li><a href="add-post.html" class="nav-link active">Add Post</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="community.html" class="nav-link">Community</a></li>
+                <li id="auth-section"><a href="#" id="login-btn" class="nav-link">Login</a></li>
+                <li>
+                    <select id="language-switcher" class="input">
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main class="container">
+        <header class="section text-center">
+            <h1 class="section-title"><i class="fas fa-pen"></i> Share Your Journey</h1>
+            <p class="section-subtitle">Add a new travel story to Odyssey Atlas</p>
+        </header>
+        <section class="form-section">
+            <form id="add-post-form" class="form">
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-heading"></i> Title</label>
+                    <input type="text" id="post-title" class="input" placeholder="Enter post title" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-book"></i> Story</label>
+                    <div class="rich-text-editor">
+                        <div class="editor-toolbar">
+                            <button type="button" id="bold-btn"><i class="fas fa-bold"></i></button>
+                            <button type="button" id="italic-btn"><i class="fas fa-italic"></i></button>
+                            <button type="button" id="underline-btn"><i class="fas fa-underline"></i></button>
+                        </div>
+                        <div id="post-content" contenteditable="true" class="input editor-content" placeholder="Share your travel story..."></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-tag"></i> Category</label>
+                    <select id="post-category" class="input" required>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Culture">Culture</option>
+                        <option value="Nature">Nature</option>
+                        <option value="Relaxation">Relaxation</option>
+                        <option value="Food & Drink">Food & Drink</option>
+                        <option value="Budget">Budget</option>
+                        <option value="Family Travel">Family Travel</option>
+                        <option value="Solo Travel">Solo Travel</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-tags"></i> Tags (comma-separated)</label>
+                    <input type="text" id="post-tags" class="input" placeholder="e.g., hiking, beaches, culture">
+                </div>
+                <div class="form-group flex">
+                    <div class="w-50">
+                        <label class="form-label"><i class="fas fa-map-marker-alt"></i> Latitude</label>
+                        <input type="number" step="any" id="post-lat" class="input" placeholder="e.g., 35.0116" required>
+                    </div>
+                    <div class="w-50">
+                        <label class="form-label"><i class="fas fa-map-marker-alt"></i> Longitude</label>
+                        <input type="number" step="any" id="post-lng" class="input" placeholder="e.g., 135.7681" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-globe"></i> Continent</label>
+                    <select id="post-continent" class="input" required>
+                        <option value="South America">South America</option>
+                        <option value="Asia">Asia</option>
+                        <option value="Africa">Africa</option>
+                        <option value="North America">North America</option>
+                        <option value="Europe">Europe</option>
+                        <option value="Australia">Australia</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-flag"></i> Country</label>
+                    <input type="text" id="post-country" class="input" placeholder="e.g., Japan" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-city"></i> City</label>
+                    <input type="text" id="post-city" class="input" placeholder="e.g., Kyoto" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-image"></i> Image URL</label>
+                    <input type="text" id="post-image" class="input" placeholder="Enter image path (e.g., images/my-image.jpg)" required>
+                    <img id="image-preview" class="image-preview" alt="Image Preview">
+                </div>
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-video"></i> Video URL (Optional)</label>
+                    <input type="text" id="post-video" class="input" placeholder="Enter video URL (e.g., https://example.com/video.mp4)">
+                </div>
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-user"></i> Author</label>
+                    <input type="text" id="post-author" class="input" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-calendar"></i> Date</label>
+                    <input type="date" id="post-date" class="input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-sun"></i> Best Season to Visit</label>
+                    <select id="post-season" class="input" required>
+                        <option value="Spring">Spring</option>
+                        <option value="Summer">Summer</option>
+                        <option value="Fall">Fall</option>
+                        <option value="Winter">Winter</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Add Post</button>
+            </form>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>© 2025 Odyssey Atlas. Crafted with <i class="fas fa-heart"></i> for explorers.</p>
+    </footer>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

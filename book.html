@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Book your travel experience with Odyssey Atlas">
+    <meta name="keywords" content="travel booking, adventure, culture, nature">
+    <meta name="author" content="Odyssey Atlas Team">
+    <title>Odyssey Atlas - Book</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">Odyssey Atlas</h1>
+            <button id="toggle-nav" class="nav-toggle"><i class="fas fa-bars"></i></button>
+            <ul id="nav-links" class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="map.html" class="nav-link">Map</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+                <li><a href="add-post.html" class="nav-link">Add Post</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="community.html" class="nav-link">Community</a></li>
+                <li><a href="book.html" class="nav-link active">Book Now</a></li>
+                <li id="auth-section"><a href="#" id="login-btn" class="nav-link">Login</a></li>
+                <li>
+                    <select id="language-switcher" class="input">
+                        <option value="en">English</option>
+                        <option value="es">Hindi</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main class="container">
+        <header class="section text-center">
+            <h1 class="section-title"><i class="fas fa-calendar-check"></i> Book Your Adventure</h1>
+            <p class="section-subtitle">Reserve your spot at stunning destinations!</p>
+        </header>
+        <section class="section">
+            <form id="booking-form" class="form">
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-map-marker-alt"></i> Destination</label>
+                    <select id="booking-destination" class="input" required>
+                        <option value="">Select a Destination</option>
+                        <!-- Populated dynamically -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-calendar"></i> Start Date</label>
+                    <input type="date" id="booking-start-date" class="input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-calendar"></i> End Date</label>
+                    <input type="date" id="booking-end-date" class="input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-user"></i> Number of Travelers</label>
+                    <input type="number" id="booking-travelers" class="input" min="1" max="10" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="booking-email" class="input" placeholder="Your email" required>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Submit Booking</button>
+            </form>
+        </section>
+        <section id="booking-confirmation" class="section" style="display:none;">
+            <h2 class="section-title"><i class="fas fa-check-circle"></i> Booking Confirmed!</h2>
+            <p id="confirmation-details" class="confirmation-text"></p>
+            <button id="close-confirmation" class="btn btn-secondary">Close</button>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>© 2025 Odyssey Atlas. Crafted with <i class="fas fa-heart" style="color: #f97316;"></i> for explorers.</p>
+    </footer>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

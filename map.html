@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive travel map with booking options - Odyssey Atlas">
+    <meta name="keywords" content="travel map, blog locations, adventure, culture, nature, booking">
+    <meta name="author" content="Odyssey Atlas Team">
+    <title>Odyssey Atlas - Map</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">Odyssey Atlas</h1>
+            <button id="toggle-nav" class="nav-toggle"><i class="fas fa-bars"></i></button>
+            <ul id="nav-links" class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="map.html" class="nav-link active">Map</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+                <li><a href="add-post.html" class="nav-link">Add Post</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="community.html" class="nav-link">Community</a></li>
+                <li><a href="book.html" class="nav-link">Book Now</a></li>
+                <li id="auth-section"><a href="#" id="login-btn" class="nav-link">Login</a></li>
+                <li>
+                    <select id="language-switcher" class="input">
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main class="container flex-container">
+        <aside class="sidebar">
+            <h2 class="sidebar-title"><i class="fas fa-filter"></i> Filters</h2>
+            <input type="text" id="search-input" class="input" placeholder="Search destinations or tags...">
+            <div class="filter-buttons">
+                <button id="filter-all" class="btn btn-secondary filter-btn active" data-category="all">All</button>
+                <button id="filter-adventure" class="btn btn-secondary filter-btn" data-category="Adventure">Adventure</button>
+                <button id="filter-culture" class="btn btn-secondary filter-btn" data-category="Culture">Culture</button>
+                <button id="filter-nature" class="btn btn-secondary filter-btn" data-category="Nature">Nature</button>
+                <button id="filter-relaxation" class="btn btn-secondary filter-btn" data-category="Relaxation">Relaxation</button>
+                <button id="filter-food" class="btn btn-secondary filter-btn" data-category="Food & Drink">Food & Drink</button>
+                <button id="filter-budget" class="btn btn-secondary filter-btn" data-category="Budget">Budget</button>
+                <button id="filter-family" class="btn btn-secondary filter-btn" data-category="Family Travel">Family Travel</button>
+                <button id="filter-solo" class="btn btn-secondary filter-btn" data-category="Solo Travel">Solo Travel</button>
+            </div>
+            <div class="filter-date">
+                <label class="form-label">Date Range</label>
+                <input type="date" id="start-date" class="input" placeholder="Start Date">
+                <input type="date" id="end-date" class="input" placeholder="End Date">
+            </div>
+            <div class="filter-season">
+                <label class="form-label">Season</label>
+                <select id="season-filter" class="input">
+                    <option value="all">All Seasons</option>
+                    <option value="Spring">Spring</option>
+                    <option value="Summer">Summer</option>
+                    <option value="Fall">Fall</option>
+                    <option value="Winter">Winter</option>
+                </select>
+            </div>
+            <div class="filter-location">
+                <label class="form-label">Continent</label>
+                <select id="continent-filter" class="input">
+                    <option value="all">All Continents</option>
+                    <option value="South America">South America</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Africa">Africa</option>
+                    <option value="North America">North America</option>
+                    <option value="Europe">Europe</option>
+                    <option value="Australia">Australia</option>
+                </select>
+                <label class="form-label">Country</label>
+                <select id="country-filter" class="input">
+                    <option value="all">All Countries</option>
+                    <option value="Peru">Peru</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Tanzania">Tanzania</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Italy">Italy</option>
+                    <option value="Iceland">Iceland</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Indonesia">Indonesia</option>
+                </select>
+                <label class="form-label">City</label>
+                <select id="city-filter" class="input">
+                    <option value="all">All Cities</option>
+                    <option value="Machu Picchu">Machu Picchu</option>
+                    <option value="Kyoto">Kyoto</option>
+                    <option value="Serengeti">Serengeti</option>
+                    <option value="Lake Louise">Lake Louise</option>
+                    <option value="Venice">Venice</option>
+                    <option value="Jökulsárlón">Jökulsárlón</option>
+                    <option value="Torres del Paine">Torres del Paine</option>
+                    <option value="Ubud">Ubud</option>
+                </select>
+            </div>
+        </aside>
+        <section class="map-section">
+            <h2 class="section-title"><i class="fas fa-map"></i> Discover Your Journey</h2>
+            <div class="map-controls">
+                <select id="map-style" class="input">
+                    <option value="street">Street View</option>
+                    <option value="satellite">Satellite</option>
+                    <option value="terrain">Terrain</option>
+                </select>
+                <button id="user-location" class="btn btn-secondary"><i class="fas fa-location-arrow"></i> My Location</button>
+                <button id="fullscreen-map" class="btn btn-secondary"><i class="fas fa-expand"></i> Fullscreen</button>
+            </div>
+            <div id="map" class="map animate__animated animate__fadeIn"></div>
+        </section>
+    </main>
+    <div id="post-modal" class="modal">
+        <div class="modal-content animate__animated animate__zoomIn">
+            <button id="close-modal" class="modal-close"><i class="fas fa-times"></i></button>
+            <h3 id="modal-title" class="modal-title"></h3>
+            <img id="modal-image" class="modal-image" alt="">
+            <video id="modal-video" class="modal-video" controls style="display:none;"></video>
+            <p id="modal-content" class="modal-text"></p>
+            <p id="modal-category" class="modal-category"></p>
+            <p id="modal-author" class="modal-author"></p>
+            <p id="modal-tags" class="modal-tags"></p>
+            <div id="modal-likes" class="modal-likes"><i class="fas fa-heart"></i> <span id="like-count">0</span> Likes</div>
+            <div class="modal-ratings">
+                <label>Rate this post:</label>
+                <div id="rating-stars" class="rating-stars">
+                    <i class="fas fa-star" data-value="1"></i>
+                    <i class="fas fa-star" data-value="2"></i>
+                    <i class="fas fa-star" data-value="3"></i>
+                    <i class="fas fa-star" data-value="4"></i>
+                    <i class="fas fa-star" data-value="5"></i>
+                </div>
+                <span id="rating-average">Average: 0 (0 votes)</span>
+            </div>
+            <div class="modal-comments">
+                <h4>Comments</h4>
+                <ul id="comment-list"></ul>
+                <input type="text" id="comment-input" class="input" placeholder="Add a comment...">
+                <button id="add-comment" class="btn btn-secondary">Add</button>
+            </div>
+            <div class="modal-social">
+                <h4>Share this Post:</h4>
+                <a href="#" id="share-twitter" class="social-btn"><i class="fab fa-twitter"></i></a>
+                <a href="#" id="share-facebook" class="social-btn"><i class="fab fa-facebook"></i></a>
+                <a href="#" id="share-whatsapp" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="modal-related">
+                <h4>Related Posts:</h4>
+                <ul id="related-posts"></ul>
+            </div>
+            <a href="book.html?destinationId=modal-id" id="book-now" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Book This Experience</a>
+            <button id="favorite-post" class="btn btn-secondary"><i class="fas fa-bookmark"></i> Save to Favorites</button>
+            <button id="add-to-trip" class="btn btn-secondary"><i class="fas fa-list"></i> Add to Trip List</button>
+            <button id="download-post" class="btn btn-secondary"><i class="fas fa-download"></i> Download Offline</button>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>© 2025 Odyssey Atlas. Crafted with <i class="fas fa-heart" style="color: #f97316;"></i> for explorers.</p>
+    </footer>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.js"></script>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
